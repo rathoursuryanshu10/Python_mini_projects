@@ -1,0 +1,13 @@
+import PyPDF2
+
+pdf_input = open('input.pdf', 'rb')
+pdf_reader = PyPDF2.PdfFileReader(pdf_input)
+
+with open('output.txt', 'w') as text_output:    
+    for page_num in range(pdf_reader.numPages):
+        page = pdf_reader.getPage(page_num)
+        text=page.extractText()
+        text_output.write(text)
+
+pdf_input.close()
+print("File written")
